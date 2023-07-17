@@ -115,9 +115,11 @@ describe('GET /hotels', () => {
 
         await createTicket(enrollment.id, ticketType.id, 'PAID');
 
+        const hotel = await makeHotel();
+
         const response = await server.get('/hotels').set('Authorization', `Bearer ${token}`);
 
-        const hotel = await makeHotel();
+        //expect(response.status).toBe(200);
 
         expect(response.body[0]).toEqual({
             id: hotel.id,

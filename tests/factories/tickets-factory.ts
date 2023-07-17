@@ -24,7 +24,7 @@ export async function createTicket(enrollmentId: number, ticketTypeId: number, s
 }
 
 export async function createTicketTypeFactory(isRemote: boolean, includesHotel: boolean) {
-    return prisma.ticketType.create({
+    return await prisma.ticketType.create({
         data: {
             name: faker.name.firstName(),
             price: faker.datatype.number(),
