@@ -5,4 +5,12 @@ async function getAllHotelsRepository() {
     return prisma.hotel.findMany();
 }
 
-export default { getAllHotelsRepository };
+async function getHotelByIdRepository(hotelId: number) {
+    const id = hotelId;
+    return prisma.hotel.findUnique({
+        where: { id },
+        include: { Rooms: true }
+    });
+}
+
+export default { getAllHotelsRepository, getHotelByIdRepository };
