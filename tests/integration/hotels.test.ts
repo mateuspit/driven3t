@@ -97,7 +97,7 @@ describe('GET /hotels', () => {
         const user = await createUser();
         const token = await generateValidToken(user);
         const enrollment = await createEnrollmentWithAddress(user);
-        const ticketType = await createTicketTypeFactory(true, false);
+        const ticketType = await createTicketTypeFactory(false, true);
 
         await createTicket(enrollment.id, ticketType.id, 'PAID');
 
@@ -110,7 +110,8 @@ describe('GET /hotels', () => {
         const user = await createUser();
         const token = await generateValidToken(user);
         const enrollment = await createEnrollmentWithAddress(user);
-        const ticketType = await createTicketTypeFactory(true, false);
+        const ticketType = await createTicketTypeFactory(false, true);
+        //export async function createTicketTypeFactory(isRemote: boolean, includesHotel: boolean) 
 
         await createTicket(enrollment.id, ticketType.id, 'PAID');
 

@@ -8,7 +8,6 @@ export async function makeHotel() {
         updatedAt: new Date(),
         createdAt: new Date(),
     };
-
     //const Rooms = {
     //    id: faker.id,
     //    name: faker.name,
@@ -17,14 +16,11 @@ export async function makeHotel() {
     //    updatedAt: new Date(),
     //    createdAt: new Date(),
     //}
-
     const newHotel = await prisma.hotel.create({
         data: hotelData,
     });
-
     //const hotelWithRooms = await prisma.hotel.create({
     //    data: hotelData,
     //});
-
     return newHotel;
 }

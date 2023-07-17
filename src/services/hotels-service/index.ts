@@ -10,18 +10,22 @@ import ticketService from '@/services/tickets-service'
 async function getAllHotelsService(userId: number) {
     const enrollmentWithAdress = await enrollmentsService.getOneWithAddressByUserId(userId);
     if (!enrollmentWithAdress) throw notFoundError();
-
+    //console.log("userTicketId:")
     const userTicketId = await ticketService.getTicketByUserId(userId);
+    //console.log("userTicketId:", userTicketId)
     if (!userTicketId) throw notFoundError();
 
     if (userTicketId.status !== 'PAID') throw Error("PAYMENT_REQUIRED");
 
     const ticketsTypes = await ticketsRepository.findTicketByEnrollmentId(enrollmentWithAdress.id);
+    console.log("ticketsTypes:", ticketsTypes)
     if (ticketsTypes.TicketType.isRemote === true || ticketsTypes.TicketType.includesHotel === false) {
+        console.log("disgrace")
         throw Error("PAYMENT_REQUIRED");
     }
-
+    console.log("service before hotels:")
     const hotels = await hotelsRepository.getAllHotelsRepository();
+    console.log("service after hotels:", hotels)
     if (!hotels[0] || !hotels) throw notFoundError();
 
     return hotels;
