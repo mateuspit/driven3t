@@ -8,8 +8,6 @@ import enrollmentsService from '@/services/enrollments-service'
 import ticketService from '@/services/tickets-service'
 
 async function getAllHotelsService(userId: number) {
-    //const hotels = await hotelsRepository.getAllHotelsRepository();
-    //if (!ticket) throw notFoundError();
     const enrollmentWithAdress = await enrollmentsService.getOneWithAddressByUserId(userId);
     if (!enrollmentWithAdress) throw notFoundError();
 
@@ -26,10 +24,6 @@ async function getAllHotelsService(userId: number) {
     const hotels = await hotelsRepository.getAllHotelsRepository();
     if (!hotels[0] || !hotels) throw notFoundError();
 
-    //const enrollment = await enrollmentRepository.findById(ticket.enrollmentId);
-    //if (!enrollment) throw notFoundError();
-
-    //if (enrollment.userId !== userId) throw unauthorizedError();
     return hotels;
 }
 
